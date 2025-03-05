@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -10,6 +10,7 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-country-detail',
@@ -20,7 +21,14 @@ import {
 })
 export class CountryDetailPage implements OnInit {
 
-  constructor() { }
+  private route = inject(ActivatedRoute);
+
+  constructor(
+    // private route: ActivatedRoute
+  ) {
+    const country = this.route.snapshot.data['country'];
+    console.log(country);
+  }
 
   ngOnInit() {
   }

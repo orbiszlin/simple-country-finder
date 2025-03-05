@@ -1,5 +1,6 @@
 import {Routes} from '@angular/router';
 import {TabsPage} from './tabs.page';
+import {countryDetailResolver} from "../resolvers/country-detail/country-detail.resolver";
 
 export const routes: Routes = [
   {
@@ -23,6 +24,9 @@ export const routes: Routes = [
       },
       {
         path: 'tab1/country-detail',
+        resolve: {
+          country: countryDetailResolver
+        },
         loadComponent: () => import('../pages/country-detail/country-detail.page').then(m => m.CountryDetailPage)
       },
       {
