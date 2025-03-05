@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Countries
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,22 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Countries</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!--<div>
+    {{ countries$ | async | json }}
+  </div>
+  -->
+
+  <ion-list>
+    <ion-card routerLink="/tabs/tab1/country-detail"
+      [button]="true" *ngFor="let country of countries$ | async">
+      <img alt="Country Flag" style="width:100%" src="{{country.flags.svg}}" />
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">{{country.name.common}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
 </ion-content>
