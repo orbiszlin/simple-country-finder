@@ -23,7 +23,7 @@ export const routes: Routes = [
           import('../tab3/tab3.page').then((m) => m.Tab3Page),
       },
       {
-        path: 'tab1/country-detail',
+        path: 'tab1/country-detail/:name',
         resolve: {
           country: countryDetailResolver
         },
