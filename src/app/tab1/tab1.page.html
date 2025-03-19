@@ -19,7 +19,7 @@
   -->
 
   <ion-list>
-    <ion-card routerLink="/tabs/tab1/country-detail/czechia"
+    <ion-card [routerLink]="['/tabs/tab1/country-detail', country.name.common]"
       [button]="true" *ngFor="let country of countries$ | async">
       <img alt="Country Flag" style="width:100%" src="{{country.flags.svg}}" />
       <ion-card-header>

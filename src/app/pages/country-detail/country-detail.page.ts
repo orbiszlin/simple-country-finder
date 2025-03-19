@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 import {
   IonBackButton,
   IonButton,
@@ -10,7 +10,8 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Country} from "../../models/country.model";
 
 @Component({
   selector: 'app-country-detail',
@@ -22,12 +23,17 @@ import {ActivatedRoute} from "@angular/router";
 export class CountryDetailPage implements OnInit {
 
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
+
+  country: Country
 
   constructor(
     // private route: ActivatedRoute
   ) {
-    const country = this.route.snapshot.data['country'];
-    console.log(country);
+    this.country = this.route.snapshot.data['country'];
+    if (this.country === null) {
+      this.router.navigate(['/']);
+    }
   }
 
   ngOnInit() {
