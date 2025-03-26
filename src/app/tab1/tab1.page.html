@@ -4,6 +4,9 @@
       Countries
     </ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar [debounce]="300" (ionInput)="handleSearch($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -20,10 +23,10 @@
 
   <ion-list>
     <ion-card [routerLink]="['/tabs/tab1/country-detail', country.name.common]"
-      [button]="true" *ngFor="let country of countries$ | async">
-      <img alt="Country Flag" style="width:100%" src="{{country.flags.svg}}" />
+              [button]="true" *ngFor="let country of countries$ | async">
+      <img alt="Country Flag" style="width:100%" src="{{country.flags.svg}}"/>
       <ion-card-header>
-        <ion-card-title class="ion-text-center">{{country.name.common}}</ion-card-title>
+        <ion-card-title class="ion-text-center">{{ country.name.common }}</ion-card-title>
       </ion-card-header>
     </ion-card>
   </ion-list>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
@@ -6,7 +6,7 @@ import {
   IonContent,
   IonList,
   IonCard,
-  IonCardHeader, IonCardTitle
+  IonCardHeader, IonCardTitle, IonSearchbar
 } from '@ionic/angular/standalone';
 import {CountriesService} from "../services/countries/countries.service";
 import {Observable} from "rxjs";
@@ -19,7 +19,7 @@ import {RouterLink} from "@angular/router";
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, AsyncPipe, IonList, NgForOf, IonCard, IonCardHeader, IonCardTitle, RouterLink],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, AsyncPipe, IonList, NgForOf, IonCard, IonCardHeader, IonCardTitle, RouterLink, IonSearchbar],
   standalone: true,
 })
 export class Tab1Page {
@@ -37,6 +37,14 @@ export class Tab1Page {
       console.log(countries);
     });
      */
+
+  }
+
+  handleSearch(event: CustomEvent) {
+    const search = event.detail.value.toLowerCase();
+    console.log(search);
+    this.countries$ = this.countriesService.search$(search);
+
 
   }
 }

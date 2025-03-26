@@ -15,6 +15,7 @@ export interface Country {
   cca3: string;
   ccn3: string;
   flag: string;
+  currencies: any;
   flags: CountryFlags;
   latlng: [number,number];
   name: CountryName;
