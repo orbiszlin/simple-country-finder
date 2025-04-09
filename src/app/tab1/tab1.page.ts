@@ -6,10 +6,19 @@ import {
   IonContent,
   IonList,
   IonCard,
-  IonCardHeader, IonCardTitle, IonSearchbar
+  IonCardHeader,
+  IonCardTitle,
+  IonSearchbar,
+  IonModal,
+  IonButtons,
+  IonButton,
+  IonItem,
+  IonInput,
+  IonSelect,
+  IonSelectOption
 } from '@ionic/angular/standalone';
 import {CountriesService} from "../services/countries/countries.service";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {AsyncPipe, NgForOf} from "@angular/common";
 import {Country} from "../models/country.model";
 import {RouterLink} from "@angular/router";
@@ -19,7 +28,7 @@ import {RouterLink} from "@angular/router";
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, AsyncPipe, IonList, NgForOf, IonCard, IonCardHeader, IonCardTitle, RouterLink, IonSearchbar],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, AsyncPipe, IonList, NgForOf, IonCard, IonCardHeader, IonCardTitle, RouterLink, IonSearchbar, IonModal, IonButtons, IonButton, IonItem, IonInput, IonSelect, IonSelectOption],
   standalone: true,
 })
 export class Tab1Page {
@@ -46,5 +55,16 @@ export class Tab1Page {
     this.countries$ = this.countriesService.search$(search);
 
 
+  }
+
+  filtrate(event: any) {
+    const value = event.detail.value;
+    this.countries$ = this.countriesService.countries$()
+      .pipe(
+        map(countries => {
+          return countries
+            .filter((country: any) => country.currencies.findIndex((c: any) => c.shortcode === value) > -1)
+        })
+      );
   }
 }
